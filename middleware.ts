@@ -5,7 +5,8 @@ export function middleware(request: NextRequest) {
   if (process.env.VERCEL_ENV === "preview") {
     // Custom logic for preview deployments
     const response = NextResponse.next();
-    response.headers.set("X-Frame-Options", "ALLOW-FROM [Your URL]");
+    //  allow from codepen
+    response.headers.set("X-Frame-Options", "ALLOW-FROM https://codepen.io");
     return response;
   }
   // Default behavior for other environments
