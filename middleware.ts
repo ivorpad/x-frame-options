@@ -5,6 +5,7 @@ export function middleware(request: NextRequest) {
   // Clone the request headers and set a new header `x-hello-from-middleware1`
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("Content-Security-Policy", "frame-ancestors 'self' https://codepen.io");
+  requestHeaders.set("x-frame-options", "SAMEORIGIN");
 
   // You can also set request headers in NextResponse.rewrite
   const response = NextResponse.next({
@@ -15,6 +16,6 @@ export function middleware(request: NextRequest) {
   });
 
   // Set a new response header `x-hello-from-middleware2`
-  response.headers.set("x-hello-from-middleware2", "hello");
+  response.headers.set("x-hello-from-middleware", "hello world");
   return response;
 }
