@@ -11,24 +11,24 @@ const nextConfig = {
             value: "frame-ancestors 'self' https://codepen.io",
           },
           {
-            key: 'Content-Security-Policy',
-            value: "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+            key: 'X-Frame-Options',
+            value: 'ALLOW-FROM https://codepen.io',
           },
           {
             key: 'Content-Security-Policy',
-            value: "style-src 'self' 'unsafe-inline'",
+            value: "style-src 'self' 'unsafe-inline' https://codepen.io",
           },
           {
-            key: 'Content-Security-Policy',
-            value: "img-src 'self' data: blob:",
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
           },
           {
-            key: 'Content-Security-Policy',
-            value: "connect-src 'self' https://api.github.com",
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
           },
           {
-            key: 'Content-Security-Policy',
-            value: "frame-src 'self' https://codepen.io",
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
           },
         ],
       },
