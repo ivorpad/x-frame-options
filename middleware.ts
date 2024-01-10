@@ -2,20 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // Clone the request headers and set a new header `x-hello-from-middleware1`
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("Content-Security-Policy", "frame-ancestors 'self' https://codepen.io");
-  requestHeaders.set("x-frame-options", "SAMEORIGIN");
-
-  // You can also set request headers in NextResponse.rewrite
-  const response = NextResponse.next({
-    request: {
-      // New request headers
-      headers: requestHeaders,
-    },
-  });
-
-  // Set a new response header `x-hello-from-middleware2`
-  response.headers.set("x-hello-from-middleware", "hello world");
-  return response;
+  if (process.env.VERCEL_ENV === "preview") {
+    // Custom logic for preview deployments
+    const response = NextResponse.next();
+    response.headers.set("X-Frame-Options", "ALLOW-FROM [Your URL]");
+    return response;
+  }
+  // Default behavior for other environments
+  return NextResponse.next();
 }
