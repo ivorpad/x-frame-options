@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     // Custom logic for preview deployments
     const response = NextResponse.next();
     //  allow from codepen
-    response.headers.set("X-Frame-Options", "ALLOW-FROM https://codepen.io");
+    response.headers.set("X-Frame-Options", "SAMEORIGIN");
     return response;
   }
   // Default behavior for other environments
