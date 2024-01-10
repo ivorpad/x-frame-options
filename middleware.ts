@@ -7,6 +7,9 @@ export function middleware(request: NextRequest) {
     const response = NextResponse.next();
     //  allow from codepen
     response.headers.set("X-Frame-Options", "SAMEORIGIN");
+    response.headers.set("Cross-Origin-Resource-Policy", "cross-origin");
+    response.headers.set("Content-Security-Policy", "frame-ancestors 'self' https://codepen.io");
+
     return response;
   }
   // Default behavior for other environments
